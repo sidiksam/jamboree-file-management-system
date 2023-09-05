@@ -9,13 +9,13 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [success, setSuccess] = React.useState(false);
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     setLoading(true);
     e.preventDefault();
-   
+
     if (
       (!name,
       !email || !password,
@@ -28,7 +28,6 @@ const RegisterForm = () => {
     if (password !== passwordConfirmation) {
       toast.error("Password do not match ");
       return setLoading(false);
-      
     }
 
     dispatch(registerUser(name, email, password, setSuccess, setLoading));
@@ -36,19 +35,19 @@ const RegisterForm = () => {
 
   React.useEffect(() => {
     if (success) {
-      navigate("/dashboard");
-    }else{
-      return setLoading(false)
+      navigate("/pending");
+    } else {
+      return setLoading(false);
     }
   }, [success, navigate]);
 
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = React.useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   return (
     <div className="flex h-screen login-bg justify-center items-center">
-      <div className="w-3/12">
+      <div className="md:w-3/12">
         <div className="bg-white p-10 rounded-md border">
           <div className="flex items-center flex-col">
             <img src="/logo.jpeg" alt="logo" className="w-40 h-14 " />
@@ -56,7 +55,6 @@ const RegisterForm = () => {
               Welcome to Jamboree File Management System
             </h2>
           </div>
-
 
           <Form
             layout="vertical"

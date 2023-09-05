@@ -6,6 +6,8 @@ import React from "react";
 import { checkIsLoggedIn } from "./redux/actionCreators/authActionCreator";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PendingPage from "./pages/DashboardPage/PendingPage";
+import AdminPage from "./pages/DashboardPage/AdminPage";
 
 
 const App = () => {
@@ -21,6 +23,8 @@ const App = () => {
         <Route path="/signin" element={<Login />}></Route>
         <Route path="/signup" element={<Register />}></Route>
         <Route path="/dashboard/*" element={<DashboardPage />}></Route>
+        <Route path="/pending/*" element={<PendingPage />}></Route>
+        <Route path="/admin/*" element={<AdminPage />}></Route>
       </Routes>
     </div>
   );

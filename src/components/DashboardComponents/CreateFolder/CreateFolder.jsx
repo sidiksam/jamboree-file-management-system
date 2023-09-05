@@ -9,6 +9,7 @@ const CreateFolder = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [folderName, setFolderName] = useState("");
+  const [form] = Form.useForm();
 
   const showModal = () => {
     setOpen(true);
@@ -18,14 +19,15 @@ const CreateFolder = () => {
     setOpen(false);
   };
 
-  const { currentFolder, userFolders, user, currentFolderData } = useSelector(
+  const { currentFolder, userFolders, user, currentFolderData,} = useSelector(
     (state) => ({
       userFolders: state.fileFolders.userFolders,
       user: state.auth.user,
       currentFolder: state.fileFolders.currentFolder,
-      currentFolderData: state.fileFolders.userFolders.find(
-        (folder) => folder.docId === state.fileFolders.currentFolder
+      currentFolderData: state.fileFolders?.getAllFolders.find(
+        (folder) => folder.docId == state.fileFolders.currentFolder
       ),
+      
     }),
     shallowEqual
   );
@@ -33,9 +35,8 @@ const CreateFolder = () => {
     if (success) {
       setFolderName("");
       setSuccess(false);
-      setOpen(false)
-      setLoading(false)
-      
+      setOpen(false);
+      setLoading(false);
     }
   }, [success]);
 
@@ -43,8 +44,8 @@ const CreateFolder = () => {
 
   const checkFolderAlreadyExist = (name) => {
     const folderPresent = userFolders
-      .filter((folder) => folder.data.parent === currentFolder)
-      .find((fldr) => fldr.data.name === name);
+      .filter((folder) => folder.data.parent == currentFolder)
+      .find((fldr) => fldr.data.name == name);
     if (folderPresent) {
       return true;
     } else {
@@ -52,7 +53,7 @@ const CreateFolder = () => {
     }
   };
   const handleSubmit = (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     if (folderName) {
       if (folderName.length > 3) {
@@ -62,29 +63,26 @@ const CreateFolder = () => {
             name: folderName,
             userId: user.uid,
             createdBy: user.displayName,
-            path:
-              currentFolder === "root"
+            path:   currentFolder == "root"
                 ? []
                 : [...currentFolderData?.data.path, currentFolder],
             parent: currentFolder,
             lastAccessed: null,
             updatedAt: new Date(),
           };
-
-          return dispatch(createFolder(data,setSuccess,setLoading));
+          form.resetFields();
+          return dispatch(createFolder(data, setSuccess, setLoading));
         } else {
           toast.error("Folder already present");
-          setLoading(false)
+          setLoading(false);
         }
       } else {
         toast.error("Folder must be at least 4 charecter long");
-        setLoading(false)
-
+        setLoading(false);
       }
     } else {
       toast.error("Folder name can not be empty ");
-      setLoading(false)
-
+      setLoading(false);
     }
   };
 
@@ -113,6 +111,7 @@ const CreateFolder = () => {
         ]}
       >
         <Form
+          form={form}
           layout="vertical"
           autoComplete="off"
           onSubmitCapture={handleSubmit}
@@ -130,8 +129,6 @@ const CreateFolder = () => {
           </Form.Item>
         </Form>
       </Modal>
-
-
     </>
   );
 };

@@ -16,7 +16,7 @@ const FileComponent = () => {
   const { currentFile, isAuthenticated } = useSelector(
     (state) => ({
       currentFile: state.fileFolders.userFiles.find(
-        (file) => file.docId === fileId
+        (file) => file.docId == fileId
       ),
       isAuthenticated: state.auth.isAuthenticated
     }),

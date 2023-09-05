@@ -10,7 +10,7 @@ const CreateFile = () => {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const [form] = Form.useForm();
   const showModal = () => {
     setOpen(true);
   };
@@ -24,8 +24,8 @@ const CreateFile = () => {
       userFiles: state.fileFolders.userFiles,
       user: state.auth.user,
       currentFolder: state.fileFolders.currentFolder,
-      currentFolderData: state.fileFolders.userFolders.find(
-        (folder) => folder.docId === state.fileFolders.currentFolder
+      currentFolderData: state.fileFolders?.getAllFolders.find(
+        (folder) => folder.docId == state.fileFolders.currentFolder
       ),
     }),
     shallowEqual
@@ -36,7 +36,7 @@ const CreateFile = () => {
       setfileName("");
       setSuccess(false);
       setOpen(false);
-      setLoading(false)
+      setLoading(false);
     }
   }, [success]);
 
@@ -47,8 +47,8 @@ const CreateFile = () => {
       name = name + ".txt";
     }
     const filePresent = userFiles
-      .filter((file) => file.data.parent === currentFolder)
-      .find((fldr) => fldr.data.name === name);
+      .filter((file) => file.data.parent == currentFolder)
+      .find((fldr) => fldr.data.name == name);
     if (filePresent) {
       return true;
     } else {
@@ -57,7 +57,7 @@ const CreateFile = () => {
   };
   const [fileName, setfileName] = useState("");
   const handleSubmit = (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     if (fileName) {
       if (fileName.length > 3) {
@@ -67,15 +67,13 @@ const CreateFile = () => {
           extention = true;
         }
         if (!checkFileAlreadyExist(fileName, extention)) {
-        
-
           const data = {
             createdAt: new Date(),
             name: extention ? fileName : `${fileName}.txt`,
             userId: user.uid,
             createdBy: user.displayName,
             path:
-              currentFolder === "root"
+              currentFolder == "root"
                 ? []
                 : [...currentFolderData?.data.path, currentFolder],
             parent: currentFolder,
@@ -85,21 +83,20 @@ const CreateFile = () => {
             data: "",
             url: null,
           };
-
-          dispatch(createFile(data, setSuccess,setLoading));
-          console.log("Data", data);
+          form.resetFields();
+          dispatch(createFile(data, setSuccess, setLoading));
+         
         } else {
           toast.error("File already present");
-          setLoading(false)
+          setLoading(false);
         }
       } else {
         toast.error("File must be at least 4 charecter long");
-        setLoading(false)
-
+        setLoading(false);
       }
     } else {
       toast.error("File name can not be empty ");
-      setLoading(false)
+      setLoading(false);
     }
   };
   return (
@@ -107,8 +104,7 @@ const CreateFile = () => {
       <FaFileAlt />
 
       <Button className="border-none bord text-gray-700" onClick={showModal}>
-        {loading?"Creating File": "Create File"}
-       
+        {loading ? "Creating File" : "Create File"}
       </Button>
 
       <Modal
@@ -117,7 +113,7 @@ const CreateFile = () => {
         onCancel={handleCancel}
         footer={[
           <Button
-          loading={loading}
+            loading={loading}
             key="submit"
             type="primary"
             className=" bg-blue-600 w-full"
@@ -128,6 +124,7 @@ const CreateFile = () => {
         ]}
       >
         <Form
+          form={form}
           layout="vertical"
           autoComplete="off"
           onSubmitCapture={handleSubmit}

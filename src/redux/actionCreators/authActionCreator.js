@@ -8,70 +8,181 @@ const loginUser = (payload) => {
   };
 };
 
+const checkloginUser = (payload) => {
+  return {
+    type: types.CHECK_SIGN_IN,
+    payload,
+  };
+};
+const setUser = (payload) => {
+  return {
+    type: types.SET_USER,
+    payload,
+  };
+};
+const signupUser = (payload) => {
+  return {
+    type: types.SIGN_UP,
+    payload,
+  };
+};
 const logoutOutUser = () => {
   return {
     type: types.SIGN_OUT,
   };
 };
 
+// Delete user
+const setDeleteUser = (payload) => ({
+  type: types.SET_DELETE_USER,
+  payload,
+});
+
+const setloading = (payload) => ({
+  type: types.SET_LOADING,
+  payload,
+});
+
 // action creators
 
 // Loggin a user
-export const signInUser = (email, password, setSuccess,setLoading ) => (dispatch) => {
-  fire
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((user) => {
-      dispatch(
-        loginUser({
-          uid: user.user.uid,
-          email: user.user.email,
-          displayName: user.user.displayName,
-        })
-      );
-      setSuccess(true);
-      setLoading(false)
-      
-    })
-    .catch((error) => {
-      toast.error(`${error}`);
-     setLoading(false)
-      
-    });
-};
+export const signInUser =
+  (email, password, setSuccess, setLoading) => (dispatch) => {
+    fire
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        // user.user.reload();
+        // // Step 4: Create user collection in Firestore
+        // fire.firestore().collection("users").doc(user.user.uid).set({
+        //   uid: user.user.uid,
+        //   name: user.user.displayName,
+        //   email: user.user.email,
+        //   role: "user",
+        //   // Other user data you want to store
+        // });
+
+        fire
+          .firestore()
+          .collection("users")
+          .where("userId", "==", user.user.uid)
+          .get();
+        dispatch(
+          loginUser({
+            uid: user.user.uid,
+            email: user.user.email,
+            displayName: user.user.displayName,
+            emailVerified: user.user.emailVerified,
+            user: user.user,
+          })
+        );
+        setSuccess(true);
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(`${error}`);
+        setLoading(false);
+      });
+  };
 
 // Register A new user
 
-export const registerUser =
-  (name, email, password, setSuccess,setLoading) => (dispatch) => {
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        fire
-          .auth()
-          .currentUser.updateProfile({
-            displayName: name,
-          })
-          .then(async () => {
-            const currentUser = await fire.auth().currentUser;
-            dispatch(
-              loginUser({
+  // export const registerUser =
+  // (name, email, password, setSuccess, setLoading) => (dispatch) => {
+  //   fire
+  //     .auth()
+  //     .createUserWithEmailAndPassword(email, password)
+  //     // .then((cred) => {
+  //     //   cred.user.sendEmailVerification();
+  //     //   dispatch(
+  //     //     signupUser({
+  //     //       user: cred.user,
+  //     //     })
+  //     //   );
+
+  //     //   setSuccess(true);
+
+  //     //   fire.auth().currentUser.updateProfile({
+  //     //     displayName: name,
+  //     //   });
+  //     // })
+  //     // .catch((error) => {
+  //     //   toast.error(` ${error}`);
+  //     //   setLoading(false);
+  //     // });
+
+  //     .then((cred) => {
+  //       const currentUser = fire.auth().currentUser;
+  //       dispatch(
+  //         fire
+  //           .firestore()
+  //           .collection("users")
+  //           .doc(cred.user.uid)
+  //           .set({
+  //             uid: currentUser.uid,
+  //             name: currentUser.displayName,
+  //             email: currentUser.email,
+  //             role: "user",
+  //           })
+  //           .then(() => {
+  //             cred.user.sendEmailVerification();
+  //           })
+  //       );
+
+  //       setSuccess(true);
+  //     })
+
+  //     .catch((error) => {
+  //       toast.error(` ${error}`);
+  //       setLoading(false);
+  //     });
+  // };
+
+  
+export const registerUser = (name, email, password, setSuccess, setLoading) =>
+(dispatch) => {
+  fire
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((cerd) => {
+      fire
+        .auth()
+        .currentUser.updateProfile({
+          displayName: name,
+        })
+        .then(() => {
+          const currentUser = fire.auth().currentUser;
+          dispatch(
+            signupUser({
+              uid: currentUser.uid,
+              name: currentUser.displayName,
+              email: currentUser.email,
+              role:currentUser.role
+            }),
+            fire
+              .firestore()
+              .collection("users")
+              .doc(cerd.user.uid)
+              .set({
                 uid: currentUser.uid,
                 name: currentUser.displayName,
                 email: currentUser.email,
+                role: "user"
               })
-            );
-            setSuccess(true);
-           
-            
-          })
-          
-      }).catch((error) => {
-        toast.error(` ${error}`);
-        setLoading(false)
+              .then(() => {
+                cerd.user.sendEmailVerification();
+                
+              })
+          );
+        
+          setSuccess(true);
         });
-  };
+    })
+    .catch((error) => {
+      toast.error(` ${error}`);
+      setLoading(false);
+    });
+};
 
 // User Sign out function
 export const signOutUser = () => (dispatch) => {
@@ -89,12 +200,70 @@ export const checkIsLoggedIn = () => (dispatch) => {
   fire.auth().onAuthStateChanged((user) => {
     if (user) {
       dispatch(
-        loginUser({
+        checkloginUser({
           uid: user.uid,
           email: user.email,
           displayName: user.displayName,
+          role: user.role,
         })
       );
     }
   });
+};
+
+// Get single user
+export const getUser = () => (dispatch) => {
+  dispatch(setloading(true));
+  // const uid = fire.auth().currentUser.uid ;
+  const authPromise = () => {
+    return new Promise(() => {
+      if (fire.auth().currentUser?.uid != null) {
+        const user = fire.auth().currentUser?.uid;
+        fire
+          .firestore()
+          .collection("users")
+          .where("uid", "==", user)
+          .get()
+          .then(async (users) => {
+            const userData = users.docs.map((user) => ({
+              data: user.data(),
+            }));
+
+            dispatch(setloading(false));
+            dispatch(setUser(userData));
+          })
+          .catch((error) => {
+            toast.error(error);
+          })
+          .catch((error) => {
+            toast.error(`${error}`);
+          });
+      } else {
+        dispatch(setloading(false));
+      }
+    });
+  };
+
+  setTimeout(authPromise, 0);
+};
+
+// DELETE USER
+export const deleteUserFunc = (userId) => (dispatch) => {
+  dispatch(setloading(true));
+  dispatch(setloading(true));
+
+  fire
+    .firestore()
+    .collection("users")
+    .doc(userId)
+    .delete()
+
+    .then(() => {
+      dispatch(setDeleteUser(userId));
+      dispatch(setloading(false));
+      toast.success("User deleted successfully");
+    })
+    .catch(() => {
+      toast.error("Somthing went wrong");
+    });
 };

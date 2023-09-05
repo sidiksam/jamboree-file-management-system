@@ -4,7 +4,7 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../../components/DashboardComponents/Navbar/Navbar";
 import Subbar from "../../components/DashboardComponents/SubBar/Subbar";
 import HomeComponent from "../../components/DashboardComponents/HomeComponent/HomeComponent";
-import { getFiles, getFolders } from "../../redux/actionCreators/fileFoldersActionCreator";
+import { getAllFiles, getAllFolders, getFiles, getFolders } from "../../redux/actionCreators/fileFoldersActionCreator";
 import FolderComponent from "../../components/DashboardComponents/FolderComponent/FolderComponent";
 import FileComponent from "../../components/DashboardComponents/FileComponent/FileComponent";
 
@@ -30,7 +30,11 @@ const DashboardPage = () => {
   useEffect(() => {
     if (isLoading && userId) {
       dispatch(getFolders(userId));
+      dispatch(getAllFolders());
+
       dispatch(getFiles(userId));
+      dispatch(getAllFiles());
+
     }
   }, [isLoading, userId, dispatch]);
 

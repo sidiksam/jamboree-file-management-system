@@ -12,6 +12,7 @@ const UploadFile = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [file, setfile] = useState(null);
+  const [form] = Form.useForm();
 
   const showModal = () => {
     setOpen(true);
@@ -76,7 +77,7 @@ const UploadFile = () => {
           data: null,
           url: "",
         };
-
+        form.resetFields();
         dispatch(uploadFile(file, data, setSuccess, setLoading));
       } else {
         toast.error("File already present");
@@ -97,7 +98,7 @@ const UploadFile = () => {
 
       <Modal
         open={open}
-        title="Create File"
+        title="Upload File"
         onCancel={handleCancel}
         footer={[
           <Button
@@ -112,6 +113,7 @@ const UploadFile = () => {
         ]}
       >
         <Form
+          form={form}
           layout="vertical"
           autoComplete="off"
           onSubmitCapture={handleSubmit}

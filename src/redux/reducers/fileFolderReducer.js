@@ -7,6 +7,14 @@ const initialState = {
   userFiles: [],
   adminFolders: [],
   adminFiles: [],
+  adminUsers: [],
+  adminUser: [],
+  adminUserRole: [],
+  deleteFolder: [],
+  userRole: [],
+  getAllFolders: [],
+  getAllFiles: [],
+  collectionUser: [],
 };
 
 const fileFoldersReducer = (state = initialState, action) => {
@@ -23,12 +31,28 @@ const fileFoldersReducer = (state = initialState, action) => {
         userFolders: action.payload,
       };
 
+    case types.GET_ALL_FOLDERS:
+      return {
+        ...state,
+        getAllFolders: action.payload,
+      };
+
     case types.SET_LOADING:
       return {
         ...state,
         isLoading: action.payload,
       };
     case types.CHANGE_FOLDER:
+      return {
+        ...state,
+        currentFolder: action.payload,
+      };
+    case types.DELETE_FOLDER:
+      return {
+        ...state,
+        currentFolder: action.payload,
+      };
+    case types.SEARCH_FOLDER:
       return {
         ...state,
         currentFolder: action.payload,
@@ -41,6 +65,12 @@ const fileFoldersReducer = (state = initialState, action) => {
         ...state,
         userFiles: action.payload,
       };
+
+      case types.GET_ALL_FILES:
+      return {
+        ...state,
+        getAllFiles: action.payload,
+      };
     case types.CREATE_FILE:
       return {
         ...state,
@@ -50,15 +80,46 @@ const fileFoldersReducer = (state = initialState, action) => {
     case types.SET_FILE_DATA:
       const { fileId, data } = action.payload;
       const allFiles = state.userFiles;
-      const currentFile = allFiles.find((file) => file.docId === fileId);
+      const currentFile = allFiles.find((file) => file.docId == fileId);
       currentFile.data.data = data;
       return {
         ...state,
         userFiles: state.userFiles.map((file) =>
-          file.docId === fileId ? currentFile : file
+          file.docId == fileId ? currentFile : file
         ),
       };
 
+    // Delete file
+    case types.DELETE_FILE:
+      return {
+        ...state,
+        userFiles: [...state.userFiles, action.payload],
+      };
+    case types.SEARCH_FILE:
+      return {
+        ...state,
+        userFiles: [...state.userFiles, action.payload],
+      };
+
+    // Users Reducers
+
+    case types.SET_USERS:
+      return {
+        ...state,
+        adminUsers: [...state.adminUsers, action.payload],
+      };
+
+      case types.SET_USER:
+        return {
+          ...state,
+          collectionUser: [...state.collectionUser, action.payload],
+        };
+
+    case types.SET_USERS_ROLE:
+      return {
+        ...state,
+        adminUserRole: [...state.adminUserRole, action.payload],
+      };
     default:
       return state;
   }
