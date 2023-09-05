@@ -18,8 +18,6 @@ import {
 
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import create from "@ant-design/icons/lib/components/IconFont";
-import { createSelector } from "reselect";
 
 const AdminComponent = () => {
   const adminUser = useSelector((state) => state.auth);
@@ -34,13 +32,6 @@ const AdminComponent = () => {
     userAdmin: state.fileFolders.adminUsers,
     isAuthenticated: state.auth.isAuthenticated,
   }));
-
-  const state ={
-    userAdmin: state.fileFolders.adminUsers,
-    isAuthenticated: state.auth.isAuthenticated,
-  }
-
-  const useruse  = createSelector( state, (state) => state.userAdmin[0].data.role);
 
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
