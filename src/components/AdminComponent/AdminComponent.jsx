@@ -198,7 +198,7 @@ const AdminComponent = () => {
                           goBack();
                         }}
                       >
-                        go back
+                        Go back
                       </Button>
                     </li>
                   </>
@@ -268,7 +268,7 @@ const AdminComponent = () => {
                           goBack();
                         }}
                       >
-                        go back
+                        Go back
                       </Button>
                     </li>
                   </>
