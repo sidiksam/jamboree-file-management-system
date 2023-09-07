@@ -212,11 +212,11 @@ const AboutUs = () => {
                     </>
                   ) : (
                     <>
-                      <li className="  text-sm text-black border-b pb-2   ">
-                        <Link to={"/signin"}>SIGN IN</Link>
-                      </li>
                       <li className=" py-2  text-sm text-black border-b pb-2  ">
                         <Link to={"/signup"}>SIGN UP</Link>
+                      </li>
+                      <li className="  text-sm text-black border-b pb-2   ">
+                        <Link to={"/signin"}>SIGN IN</Link>
                       </li>
                      <li className=" py-2  text-sm text-black border-b pb-2  ">
                         <Link to={"/contactus"}>CONTACT US</Link>
@@ -235,7 +235,7 @@ const AboutUs = () => {
         <div className="slider md:hidden block">
               {/* fade css */}
               <div className="myslide fade ">
-                <div className="txt z-10 mt-20 ">
+                <div className="txt z-10 mt-1 ">
                   <h2 className="text-blue-500 px-2  -mr-20 -ml-20 text-center ">Welcome to Jamboree Consulting Firm</h2>
                   <p className="-mr-20 -ml-20 text-center px- pt-4">
                     Jamboree Consult is a public relations and marketing

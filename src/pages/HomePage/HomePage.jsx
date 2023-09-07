@@ -182,12 +182,12 @@ const HomePage = () => {
                     </>
                   ) : (
                     <>
-                      <li className="  text-sm text-black border-b pb-2   ">
-                        <Link to={"/signin"}>SIGN IN</Link>
-                      </li>
                       <li className=" py-2  text-sm text-black border-b pb-2  ">
                         <Link to={"/signup"}>SIGN UP</Link>
                       </li>{" "}
+                      <li className="  text-sm text-black border-b pb-2   ">
+                        <Link to={"/signin"}>SIGN IN</Link>
+                      </li>
                         <li className="  text-sm text-black border-b pb-2   ">
                         <Link to={"/contactus"}>CONTACT US</Link>
                       </li>
