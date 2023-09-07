@@ -187,7 +187,7 @@ const AdminComponent = () => {
                     <div className="flex items-center"></div>
                     <li className="bg-black py-1 px-5 rounded shadow-md ">
                       <Button className="border-none text-white text-sm ">
-                        <Link to={"/dashboard"}>Dashboard</Link>
+                        <Link to={"/dashboard"}>DASHBOARD</Link>
                       </Button>
                     </li>
 
@@ -198,17 +198,17 @@ const AdminComponent = () => {
                           goBack();
                         }}
                       >
-                        Go back
+                        GO BACK
                       </Button>
                     </li>
                   </>
                 ) : (
                   <>
                     <li className="bg-black py-2 px-5 rounded text-sm ">
-                      <Link to={"/signin"}>Sign in</Link>
+                      <Link to={"/signin"}>SIGN IN</Link>
                     </li>
                     <li className="bg-white py-2 px-5 rounded text-sm text-black ">
-                      <Link to={"/signup"}>Sign up</Link>
+                      <Link to={"/signup"}>SIGN UP</Link>
                     </li>{" "}
                   </>
                 )}
@@ -258,7 +258,7 @@ const AdminComponent = () => {
                   <>
                     <li className="border-b-2 ">
                       <Button className="border-none text-black text-sm  -ml-4  ">
-                        <Link to={"/dashboard"}>Dashboard</Link>
+                        <Link to={"/dashboard"}>DASHBOARD</Link>
                       </Button>
                     </li>
                     <li className="border-b-2 ">
@@ -268,17 +268,17 @@ const AdminComponent = () => {
                           goBack();
                         }}
                       >
-                        Go back
+                        GO BACK
                       </Button>
                     </li>
                   </>
                 ) : (
                   <>
                     <li className=" md:text-sm text-sm text-black ">
-                      <Link to={"/signin"}>Sign in</Link>
+                      <Link to={"/signin"}>SIGN IN</Link>
                     </li>
                     <li className=" py-2  text-sm text-black ">
-                      <Link to={"/signup"}>Sign up</Link>
+                      <Link to={"/signup"}>SIGN UP</Link>
                     </li>{" "}
                   </>
                 )}

@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
-import { UserOutlined } from "@ant-design/icons";
-
-import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Avatar, Button, Space } from "antd";
+import { Disclosure } from "@headlessui/react";
 import {
   getUser,
   signOutUser,
-} from "../../redux/actionCreators/authActionCreator";
-import { Avatar, Button, Space } from "antd";
+} from "../../../redux/actionCreators/authActionCreator";
+import { useDispatch, useSelector } from "react-redux";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useEffect } from "react";
+import { UserOutlined } from "@ant-design/icons";
 
-const HomePage = () => {
+const AboutUs = () => {
   const adminUser = useSelector((state) => state.auth);
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -21,10 +19,10 @@ const HomePage = () => {
   }, [dispatch]);
   return (
     <>
-      <div className="container overflow-hidden">
+      <div>
         <div className="container mx-auto hidden md:block">
           <div>
-            <header className="container flex items-center  justify-between  mt-5">
+            <header className="container flex items-center  justify-between  mt-5 fixed w-full ">
               <div className="pl-8">
                 <Link to={"/"}>
                   <img
@@ -52,14 +50,14 @@ const HomePage = () => {
                     </div>
                     <li className=" md:py-1 md:px-5 rounded ">
                       <Button className="border-none text-white font-bold md:text-sm text-xs ">
-                        <Link to={"/dashboard"}>DASHBOARD</Link>
+                        <Link to={"/dashboard"}>Dashboard</Link>
                       </Button>
                     </li>
                     {adminUser.adminUser.map((user) => user.data.role) ==
                     "super admin" ? (
                       <li className=" md:py-1 md:px-5 rounded shadow-md ">
                         <Button className="border-none text-white font-bold text-sm ">
-                          <Link to={"/admin"}>ADMIN</Link>
+                          <Link to={"/admin"}>Admin</Link>
                         </Button>
                       </li>
                     ) : null}
@@ -68,7 +66,7 @@ const HomePage = () => {
                         className="border-none text-sm text-white font-bold "
                         onClick={() => dispatch(signOutUser())}
                       >
-                        LOGOUT
+                        Logout
                       </Button>
                     </li>
                   </>
@@ -100,31 +98,63 @@ const HomePage = () => {
             <div className="slider">
               {/* fade css */}
               <div className="myslide fade">
-                <div className="txt">
-                  <h1 className="text-blue-500">
-                    Welcome to Jamboree Consulting Firm
-                  </h1>
+                <div className="txt z-10 -mt-28">
+                  <h1>Welcome to Jamboree Consulting Firm</h1>
                   <p>
-                    "The real power of technology is not in its ability to store
-                    vast amounts of data <br /> but in our capacity to organize
-                    and make sense of that data." <br /> Vint Cerf, one of the
-                    "fathers of the internet."
+                    Jamboree Consult is a public relations and marketing
+                    consultancy operating in Sierra Leone. <br /> It is a
+                    subsidiary of Salone Jamboree. At Jamboree Consult, we
+                    ensure our clients are provided <br /> with effective
+                    website design and marketing strategy.
                   </p>
+                  <ul>
+                    <div className="font-bold pt-4"> We also do:</div>
+                    <div className="flex space-x-10">
+                      <div>
+                        <li>Domain Name Registration</li>
+                        <li>Corporate Emails </li>
+                        <li> Web Design</li>
+                        <li> Mobile App Development</li>
+                        <li>Social Media Marketing</li>
+                        <li> Facebook Advertising</li>
+                        <li> Documentary</li>
+                      </div>
+                      <div>
+                        <li> Graphic Design</li>
+                        <li> Printing</li>
+                        <li> Networking</li>
+                        <li>Online Radio streaming</li>
+                        <li> Live Events streaming</li>
+                        <li> Bulk SMS</li>
+                        <li>Events</li>
+                      </div>
+                      <div>
+                        <ul>
+                         <div className="font-bold pt-4 -mt-12">
+                         Our Clients: 
+                         </div>
+                         
+                          <li>Sierra Leone Association of Journalist</li>
+                          <li> AYV Radio St. George Foundation</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </ul>
                 </div>
-                <img src="img1.jpg " className="fixed -z-10" alt="img1"/>
+                <img src="img4.jpg " className="fixed w-full " alt="img4" />
               </div>
             </div>
           </div>
         </div>
-        <Disclosure as="nav" className="bg-white   md:hidden ">
+        <Disclosure as="nav" className="bg-white  md:hidden fixed w-full z-20">
           {({ open }) => (
             <>
-              <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
-                <div className="relative flex h-16 items-center justify-between ">
-                  <div className="absolute inset-y-0 left-0 flex items-center  sm:hidden">
+              <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                <div className="relative flex h-16 items-center justify-between">
+                  <div className="absolute inset-y-0 left-0 flex items-center  sm:hidden ">
                     {/* Mobile menu button*/}
-                    <div className="space-x-32 flex  ">
-                      <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2   text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <div className="space-x-32 flex">
+                      <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2  text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                         <span className="absolute -inset-0.5" />
                         <span className="sr-only">Open main menu</span>
                         {open ? (
@@ -140,13 +170,13 @@ const HomePage = () => {
                         )}
                       </Disclosure.Button>
                       <div className="">
-                        <Link to={"/"}>
-                          <img
-                            src="logo copy.jpg"
-                            alt=""
-                            className="object-cover cursor-pointer h-14"
-                          />
-                        </Link>
+                      <Link to={"/"}>
+                  <img
+                    src="logo copy.jpg"
+                    alt=""
+                    className="object-cover cursor-pointer h-14"
+                  />
+                </Link>
                       </div>
                     </div>
                   </div>
@@ -176,7 +206,7 @@ const HomePage = () => {
                           className="border-none text-black text-sm -ml-4 "
                           onClick={() => dispatch(signOutUser())}
                         >
-                          LOGOUT
+                          Logout
                         </Button>
                       </li>
                     </>
@@ -187,13 +217,13 @@ const HomePage = () => {
                       </li>
                       <li className=" py-2  text-sm text-black border-b pb-2  ">
                         <Link to={"/signup"}>SIGN UP</Link>
-                      </li>{" "}
-                        <li className="  text-sm text-black border-b pb-2   ">
+                      </li>
+                     <li className=" py-2  text-sm text-black border-b pb-2  ">
                         <Link to={"/contactus"}>CONTACT US</Link>
                       </li>
-                      <li className=" py-2  text-sm text-black border-b pb-2  ">
+                     <li className=" py-2  text-sm text-black border-b pb-2  ">
                         <Link to={"/aboutus"}>ABOUT US</Link>
-                      </li>{" "}
+                      </li>
                     </>
                   )}
                 </ul>
@@ -201,27 +231,61 @@ const HomePage = () => {
             </>
           )}
         </Disclosure>
-        <div className="md:hidden">
-          <div className="slider">
-            {/* fade css */}
-            <div className="myslide fade  ">
-              <div className="absolute top-44 px-6 z-10 mt-14 ">
-                <p className="text-blue-500 text-2xl font-bold text-center">
-                  Welcom to Jamboree Consulting Frim
-                </p>
-                <p className="text-white font-bold text-sm pt-8 text-center ">
-                  "The real power of technology is not in its ability to store
-                  vast amounts of data but in our capacity to organize and make
-                  sense of that data."
-                  <br /> Vint Cerf, one of the "fathers of the internet."
-                </p>
+
+        <div className="slider md:hidden block">
+              {/* fade css */}
+              <div className="myslide fade ">
+                <div className="txt z-10 mt-20 ">
+                  <h2 className="text-blue-500 px-2  -mr-20 -ml-20 text-center ">Welcome to Jamboree Consulting Firm</h2>
+                  <p className="-mr-20 -ml-20 text-center px- pt-4">
+                    Jamboree Consult is a public relations and marketing
+                    consultancy operating in Sierra Leone. It is a
+                    subsidiary of Salone Jamboree. At Jamboree Consult, we
+                    ensure our clients are provided with effective
+                    website design and marketing strategy.
+                  </p>
+                  <ul className="text-sm -mr-20 -ml-20">
+                    <div className="font-bold pt-4"> We also do:</div>
+                    <div className=" space-y-3">
+                      <div>
+                        <li>Domain Name Registration</li>
+                        <li>Corporate Emails </li>
+                        <li> Web Design</li>
+                        <li> Mobile App Development</li>
+                        <li>Social Media Marketing</li>
+                        <li> Facebook Advertising</li>
+                        <li> Documentary</li>
+                      </div>
+                      <div>
+                        <li> Graphic Design</li>
+                        <li> Printing</li>
+                        <li> Networking</li>
+                        <li>Online Radio streaming</li>
+                        <li> Live Events streaming</li>
+                        <li> Bulk SMS</li>
+                        <li>Events</li>
+                      </div>
+                      <div>
+                        <ul>
+                         <div className="font-bold pt-2 ">
+                         Our Clients: 
+                         </div>
+                         
+                          <li>Sierra Leone Association of Journalist</li>
+                          <li> AYV Radio St. George Foundation</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </ul>
+                </div>
+                <img src="img4.jpg " className="fixed w-full h-full   object-cover" alt="img4" />
               </div>
-              <img src="img1.jpg " className="h-full fixed w-full object-cover" />
             </div>
-          </div>
         </div>
-      </div>
-      <footer className="bg-gray-800 text-white p-4 fixed  w-full bottom-0 md:py-2 p ">
+
+        {/*  */}
+      
+      <footer className="bg-gray-800 text-white p-4 z-10 fixed  w-full bottom-0 py-2  ">
         <div className="container mx-auto text-center md:text-base text-sm ">
           <p>
             &copy; {new Date().getFullYear()} Jamboree File Management System
@@ -232,4 +296,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AboutUs;

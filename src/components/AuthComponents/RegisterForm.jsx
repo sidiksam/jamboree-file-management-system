@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
@@ -22,6 +22,7 @@ const RegisterForm = () => {
       !passwordConfirmation && password.length < 6,
       passwordConfirmation.length < 6)
     ) {
+      toast.error("Password should be at least 6 character long");
       return setLoading(false);
     }
 
@@ -45,6 +46,7 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
   return (
     <div className="flex h-screen login-bg justify-center items-center">
       <div className="md:w-3/12">
@@ -64,7 +66,10 @@ const RegisterForm = () => {
             <Form.Item
               name="name"
               label="Name"
-              rules={[{ required: true, message: "Please input your name!" }]}
+              rules={[{ required: true, message: "Please input your name!" },{
+                pattern: /^[A-Za-z]+$/i,
+                message: "Name should be in alphabets only",
+              }]}
             >
               <Input
                 size="large"
@@ -92,7 +97,9 @@ const RegisterForm = () => {
               name="password"
               label="Password"
               rules={[
-                { required: true, message: "Please input your password!" },
+                { required: true, message: "Please input your password!" },{
+                  
+                }
               ]}
             >
               <Input.Password
@@ -107,6 +114,7 @@ const RegisterForm = () => {
               label="Confirm Password"
               rules={[
                 { required: true, message: "Please input your password!" },
+              
               ]}
             >
               <Input.Password

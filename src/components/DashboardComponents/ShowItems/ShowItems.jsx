@@ -64,7 +64,7 @@ const ShowiItems = ({ title, items, type }) => {
                       {adminUsers.adminUser.map((user) => user.data.role) ==
                       "super admin" ? (
                         <Popconfirm
-                          className=" -mr-32"
+                          className=" md:-mr-32 -mr-48"
                           title="Delete Folder"
                           description="Are you sure to delete this folder?"
                           onConfirm={() => {
@@ -88,7 +88,7 @@ const ShowiItems = ({ title, items, type }) => {
                       {adminUsers.adminUser.map((user) => user.data.role) ==
                       "super admin" ? (
                         <Popconfirm
-                          className=" mr-32"
+                          className=" md:-mr-32 -mr-48"
                           title="Delete File"
                           description="Are you sure to delete this file?"
                           onConfirm={() => {

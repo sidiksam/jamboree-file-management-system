@@ -15,7 +15,7 @@ const FileComponent = () => {
 
   const { currentFile, isAuthenticated } = useSelector(
     (state) => ({
-      currentFile: state.fileFolders.userFiles.find(
+      currentFile: state.fileFolders?.getAllFiles.find(
         (file) => file.docId == fileId
       ),
       isAuthenticated: state.auth.isAuthenticated
@@ -85,7 +85,7 @@ const FileComponent = () => {
                     className="flex items-center space-x-2 font-medium bg-black p-5 text-white  "
                   >
                   
-                    <FaArrowLeft className="" /> Go Back
+                    <FaArrowLeft className="" /> GO BACK
                   </Button>
                   <Button
                     onClick={() => downloadFile()}

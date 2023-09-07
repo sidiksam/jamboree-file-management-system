@@ -8,6 +8,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PendingPage from "./pages/DashboardPage/PendingPage";
 import AdminPage from "./pages/DashboardPage/AdminPage";
+import AboutUs from "./pages/AuthPages/AvoutUs/AboutUs";
+import Contact from "./pages/AuthPages/ContactUs/Contact";
 
 
 const App = () => {
@@ -25,6 +27,8 @@ const App = () => {
         <Route path="/dashboard/*" element={<DashboardPage />}></Route>
         <Route path="/pending/*" element={<PendingPage />}></Route>
         <Route path="/admin/*" element={<AdminPage />}></Route>
+        <Route path="/contactus/" element={<Contact />}></Route>
+        <Route path="/aboutus/" element={<AboutUs />}></Route>
       </Routes>
     </div>
   );

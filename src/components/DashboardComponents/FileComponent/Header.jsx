@@ -32,7 +32,7 @@ const Header = ({ fileName, fileId, fileData, prevFileData }) => {
             className="flex items-center space-x-2 font-medium bg-black md:p-5 text-white  "
           >
             {" "}
-            <FaArrowLeft className="" /> Go Back
+            <FaArrowLeft className="" /> GO BACK
           </Button>
         </li>
       </ul>

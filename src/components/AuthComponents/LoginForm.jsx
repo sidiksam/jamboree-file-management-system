@@ -12,11 +12,7 @@ const LoginForm = () => {
   const [success, setSuccess] = useState(false);
 
   const verifyEmail = useSelector((state) => state.auth.user.emailVerified);
-  // const adminUser = useSelector((state) => state.auth);
 
-  // const collectionUsers = useSelector(
-  //   (state) => state.fileFolders.collectionUser
-  // );
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,6 +38,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (success && verifyEmail == true) {
+  
       navigate("/dashboard");
     }
   }, [success, navigate, verifyEmail]);
@@ -50,9 +47,6 @@ const LoginForm = () => {
     if (verifyEmail == false) {
       toast.error("Please verify your email");
     }
-    // if (adminUser.adminUser.map((user) => user.data.role) == null) {
-    //   toast.error("you are not a user");
-    // }
 
   }, [verifyEmail]);
 

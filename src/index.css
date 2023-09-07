@@ -79,40 +79,6 @@ header{
 	color: #00a7ff; /* blue */
 	border-color: #00a7ff; /* blue */
 }
-/* /1 */
-
-/* 2 */
-
-.myslide{
-	height: 655px;
-	/* display: none; */
-	overflow: hidden;
-}
-
-.prev, .next{
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
-	font-size: 50px;
-	padding: 15px;
-	cursor: pointer;
-	color: #fff;
-	transition: 0.1s;
-	user-select: none;
-}
-.prev:hover, .next:hover{
-	color: #00a7ff; /* blue */
-}
-.next{
-	right: 0;
-}
-/* /2 */
-
-/* javascript */
-.active, .dot:hover{
-	border-color: #00a7ff; /* blue */
-}
-/* /javascript */
 
 
 @-webkit-keyframes fade {
@@ -138,7 +104,31 @@ header{
   	-webkit-animation-duration: 2s;
   	animation-name: posi;
   	animation-duration: 2s;
-	z-index: 1;
+	
+}
+
+.txtContact{
+	position: absolute;
+	color: #fff;
+	letter-spacing: 2px;
+	line-height: 35px;
+	top: 40%;
+	left: 15%;
+	-webkit-animation-name: posi;
+  	-webkit-animation-duration: 2s;
+  	animation-name: posi;
+  	animation-duration: 2s;
+	
+}
+
+.txtContact h1{
+	color: #00a7ff; /* blue */
+	font-size: 50px;
+	margin-bottom: 10px;
+}
+.txtContact p{
+	font-weight: bold;
+	font-size: 20px;
 }
 
 @-webkit-keyframes posi {

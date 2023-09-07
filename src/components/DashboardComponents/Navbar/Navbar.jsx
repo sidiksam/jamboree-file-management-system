@@ -45,14 +45,14 @@ const Navbar = () => {
                     </div>
                     <li className="bg-black py-1 px-5 rounded shadow-md ">
                       <Button className="border-none text-white text-sm ">
-                        <Link to={"/"}>Home</Link>
+                        <Link to={"/"}>HOME</Link>
                       </Button>
                     </li>
                     {adminUser.adminUser.map((user) => user.data.role) ==
                     "super admin" ? (
                       <li className="bg-black py-1 px-5 rounded shadow-md ">
                         <Button className="border-none text-white text-sm ">
-                          <Link to={"/admin"}>Admin</Link>
+                          <Link to={"/admin"}>ADMIN</Link>
                         </Button>
                       </li>
                     ) : null}
@@ -62,17 +62,17 @@ const Navbar = () => {
                         className="border-none text-sm  "
                         onClick={() => dispatch(signOutUser())}
                       >
-                        Logout
+                        LOGOUT
                       </Button>
                     </li>
                   </>
                 ) : (
                   <>
                     <li className="bg-black py-2 px-5 rounded text-sm ">
-                      <Link to={"/signin"}>Sign in</Link>
+                      <Link to={"/signin"}>SIGN IN</Link>
                     </li>
                     <li className="bg-white py-2 px-5 rounded text-sm text-black ">
-                      <Link to={"/signup"}>Sign up</Link>
+                      <Link to={"/signup"}>SIGN UP</Link>
                     </li>{" "}
                   </>
                 )}
@@ -90,16 +90,7 @@ const Navbar = () => {
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
               <div className="relative flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                  {/* Mobile menu button*/}
-                  {/* <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                    <span className="absolute -inset-0.5" />
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                  </Disclosure.Button> */}
+               
 
                   <div className="space-x-32 flex">
                     <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2  text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -135,14 +126,14 @@ const Navbar = () => {
                   <>
                     <li className="border-b-2 ">
                       <Button className="border-none text-black text-sm  -ml-4  ">
-                        <Link to={"/"}>Home</Link>
+                        <Link to={"/"}>HOME</Link>
                       </Button>
                     </li>
                     {adminUser.adminUser.map((user) => user.data.role) ==
                     "super admin" ? (
                       <li className="border-b-2">
                         <Button className="border-none text-black text-sm -ml-4 ">
-                          <Link to={"/admin"}>Admin</Link>
+                          <Link to={"/admin"}>ADMIN</Link>
                         </Button>
                       </li>
                     ) : null}
@@ -152,17 +143,17 @@ const Navbar = () => {
                         className="border-none text-black text-sm -ml-4 "
                         onClick={() => dispatch(signOutUser())}
                       >
-                        Logout
+                        LOGOUT
                       </Button>
                     </li>
                   </>
                 ) : (
                   <>
                     <li className=" md:text-sm text-sm text-black ">
-                      <Link to={"/signin"}>Sign in</Link>
+                      <Link to={"/signin"}>SIGN IN</Link>
                     </li>
                     <li className=" py-2  text-sm text-black ">
-                      <Link to={"/signup"}>Sign up</Link>
+                      <Link to={"/signup"}>SIGN UP</Link>
                     </li>{" "}
                   </>
                 )}
