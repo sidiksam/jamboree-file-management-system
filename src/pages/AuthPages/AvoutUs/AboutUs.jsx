@@ -235,8 +235,8 @@ const AboutUs = () => {
         <div className="slider md:hidden block">
           {/* fade css */}
           <div className="myslide fade ">
-            <div className="txt z-10 mt-1 ">
-              <h2 className="text-blue-500 px-2  -mr-20 -ml-20 text-center ">
+            <div className="txt z-10 mt-28   ">
+              <h2 className="text-blue-500 px-2  -mr-20 -ml-20 text-center  ">
                 Welcome to Jamboree Consulting Firm
               </h2>
               <p className="-mr-20 -ml-20 text-center px- pt-4">
@@ -245,9 +245,9 @@ const AboutUs = () => {
                 Jamboree. At Jamboree Consult, we ensure our clients are
                 provided with effective website design and marketing strategy.
               </p>
-              <ul className="text-sm -mr-20 -ml-20">
+              <ul className="text-sm -mr-20 -ml-20 ">
                 <div className="font-bold pt-4"> We also do:</div>
-                <div className=" space-y-3">
+                <div className=" space-y-3 mb-14">
                   <div>
                     <li>Domain Name Registration</li>
                     <li>Corporate Emails </li>

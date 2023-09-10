@@ -235,12 +235,13 @@ const ContactUs = () => {
                 Welcome to Jamboree Consulting Firm
               </h2>
               <p className="  pt-4"></p>
-              <div>
-                <div className="-ml-12 -mr-14">
+              <div  className="mb-6">
+                <div className="-ml-12 -mr-14 mt-14">
                   {" "}
                   <Map center={mapCenter} zoom={mapZoom} />
                 </div>
-                <div className="-ml-8 flex items-center pb-3 space-x-2 pt-10">
+
+                <div className="-ml-8 flex items-center pb-3 space-x-2 pt-10 ">
                   <p>
                     <FiHome />
                   </p>
