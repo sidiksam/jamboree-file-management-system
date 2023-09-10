@@ -13,6 +13,8 @@ const initialState = {
   deleteFolder: [],
   userRole: [],
   getAllFolders: [],
+  renameFolder: [],
+  renameFile: [],
   getAllFiles: [],
   collectionUser: [],
 };
@@ -30,6 +32,12 @@ const fileFoldersReducer = (state = initialState, action) => {
         ...state,
         userFolders: action.payload,
       };
+
+      case types.RENAME_FOLDER:
+        return {
+          ...state,
+          renameFolder: action.payload,
+        };
 
     case types.GET_ALL_FOLDERS:
       return {
@@ -65,6 +73,12 @@ const fileFoldersReducer = (state = initialState, action) => {
         ...state,
         userFiles: action.payload,
       };
+
+      case types.RENAME_FILE:
+        return {
+          ...state,
+          renameFile: action.payload,
+        };
 
       case types.GET_ALL_FILES:
       return {

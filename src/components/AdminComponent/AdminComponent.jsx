@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import {
   getUsers,
   updateUser,
@@ -18,6 +18,7 @@ import {
 
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ThreeCircles } from "react-loader-spinner";
 
 const AdminComponent = () => {
   const adminUser = useSelector((state) => state.auth);
@@ -27,6 +28,13 @@ const AdminComponent = () => {
 
   const users = adminUsers[0];
   const navigate = useNavigate();
+
+  const { isLoading } = useSelector(
+    (state) => ({
+      isLoading: state.fileFolders.isLoading,
+    }),
+    shallowEqual
+  );
 
   const { isAuthenticated } = useSelector((state) => ({
     userAdmin: state.fileFolders.adminUsers,
@@ -47,11 +55,9 @@ const AdminComponent = () => {
   useEffect(() => {
     if (
       adminUser.adminUser.map((user) => user.data.role) == "super admin" &&
-      isAuthenticated
+      isAuthenticated == true
     ) {
       navigate("/admin");
-    } else {
-      navigate("/dashboard");
     }
   }, [isAuthenticated, navigate]);
 
@@ -111,7 +117,7 @@ const AdminComponent = () => {
       selector: (row) => (
         <>
           <Popconfirm
-            title="Delete Folder"
+            title="Delete User"
             description="Are you sure to delete this user account?"
             onConfirm={() => {
               deleteAccount(row.data.uid);
@@ -160,8 +166,8 @@ const AdminComponent = () => {
   };
 
   // Delete Account Function
-  const deleteAccount = () => {
-    dispatch(deleteUserFunc(deleteUser));
+  const deleteAccount = (userId) => {
+    dispatch(deleteUserFunc(userId));
   };
 
   // Cancle Delete Function
@@ -173,11 +179,15 @@ const AdminComponent = () => {
     <>
       <nav className="bg-white py-3 shadow-sm hidden md:block">
         <div className="container px-24 items-center">
-          <div className="flex justify-between text-black">
+          <div className="flex justify-between items-center text-black">
             <div>
               {" "}
               <Link to={"/"}>
-              <img src="logo copy.jpg" alt="" className="object-cover cursor-pointer  h-14" />
+                <img
+                  src="logo copy.jpg"
+                  alt=""
+                  className="object-cover cursor-pointer  h-14"
+                />
               </Link>
             </div>
             <div>
@@ -204,10 +214,10 @@ const AdminComponent = () => {
                   </>
                 ) : (
                   <>
-                    <li className="bg-black py-2 px-5 rounded text-sm ">
+                    <li className="font-bold py-2 px-5 rounded text-sm ">
                       <Link to={"/signin"}>SIGN IN</Link>
                     </li>
-                    <li className="bg-white py-2 px-5 rounded text-sm text-black ">
+                    <li className="font-bold py-2 px-5 rounded text-sm  ">
                       <Link to={"/signup"}>SIGN UP</Link>
                     </li>{" "}
                   </>
@@ -338,15 +348,61 @@ const AdminComponent = () => {
             onChange={handleFilter}
           />
         </div>
-        {/* {isLoading &&( <p>Loading.....</p>)} */}
-        <DataTable
-          loading={loading}
-          columns={columns}
-          data={records}
-          fixedheader
-          pagination
-          highlightOnHover
-        />
+
+        {isAuthenticated == true ? (
+          <>
+            {isLoading ? (
+              <div className="flex items-center justify-center text-center mt-28 ">
+                <div className="text-center lg:text-5xl hidden md:block">
+                  <ThreeCircles
+                    height="100"
+                    width="100"
+                    color="#041b9e"
+                    wrapperStyle={{
+                      width: "100%",
+                      height: "100%",
+                      margin: "auto",
+                    }}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="three-circles-rotating"
+                    outerCircleColor=""
+                    innerCircleColor="#32f022"
+                    middleCircleColor=""
+                  />
+                </div>
+                <div className="text-center lg:text-5xl block md:hidden">
+                  <ThreeCircles
+                    height="50"
+                    width="50"
+                    color="#041b9e"
+                    wrapperStyle={{
+                      width: "100%",
+                      height: "100%",
+                      margin: "auto",
+                    }}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="three-circles-rotating"
+                    outerCircleColor=""
+                    innerCircleColor="#32f022"
+                    middleCircleColor=""
+                  />
+                </div>
+              </div>
+            ) : (
+              <DataTable
+                loading={loading}
+                columns={columns}
+                data={records}
+                fixedheader
+                pagination
+                highlightOnHover
+                noDataComponent
+              />
+            )}
+          </>
+        ) : null}
       </div>
     </>
   );

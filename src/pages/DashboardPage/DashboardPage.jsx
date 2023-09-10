@@ -13,7 +13,7 @@ const DashboardPage = () => {
   const {pathname} = useLocation()
   const { isLoggedin, isLoading, userId } = useSelector(
     (state) => ({
-      isLoggedin: state.auth.isAuthenticated,
+      isLoggedin: state?.auth?.isAuthenticated,
       isLoading: state.fileFolders.isLoading,
       userId: state.auth.user.uid,
     }),
@@ -22,10 +22,11 @@ const DashboardPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!isLoggedin) {
+    if (!isLoggedin && !isLoading) {
       navigate("/");
     }
   }, [isLoggedin, navigate]);
+  
 
   useEffect(() => {
     if (isLoading && userId) {

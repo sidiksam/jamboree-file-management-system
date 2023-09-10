@@ -130,10 +130,10 @@ const AboutUs = () => {
                       </div>
                       <div>
                         <ul>
-                         <div className="font-bold pt-4 -mt-12">
-                         Our Clients: 
-                         </div>
-                         
+                          <div className="font-bold pt-4 -mt-12">
+                            Our Clients:
+                          </div>
+
                           <li>Sierra Leone Association of Journalist</li>
                           <li> AYV Radio St. George Foundation</li>
                         </ul>
@@ -170,13 +170,13 @@ const AboutUs = () => {
                         )}
                       </Disclosure.Button>
                       <div className="">
-                      <Link to={"/"}>
-                  <img
-                    src="logo copy.jpg"
-                    alt=""
-                    className="object-cover cursor-pointer h-14"
-                  />
-                </Link>
+                        <Link to={"/"}>
+                          <img
+                            src="logo copy.jpg"
+                            alt=""
+                            className="object-cover cursor-pointer h-14"
+                          />
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -218,10 +218,10 @@ const AboutUs = () => {
                       <li className="  text-sm text-black border-b pb-2   ">
                         <Link to={"/signin"}>SIGN IN</Link>
                       </li>
-                     <li className=" py-2  text-sm text-black border-b pb-2  ">
+                      <li className=" py-2  text-sm text-black border-b pb-2  ">
                         <Link to={"/contactus"}>CONTACT US</Link>
                       </li>
-                     <li className=" py-2  text-sm text-black border-b pb-2  ">
+                      <li className=" py-2  text-sm text-black border-b pb-2  ">
                         <Link to={"/aboutus"}>ABOUT US</Link>
                       </li>
                     </>
@@ -233,58 +233,61 @@ const AboutUs = () => {
         </Disclosure>
 
         <div className="slider md:hidden block">
-              {/* fade css */}
-              <div className="myslide fade ">
-                <div className="txt z-10 mt-1 ">
-                  <h2 className="text-blue-500 px-2  -mr-20 -ml-20 text-center ">Welcome to Jamboree Consulting Firm</h2>
-                  <p className="-mr-20 -ml-20 text-center px- pt-4">
-                    Jamboree Consult is a public relations and marketing
-                    consultancy operating in Sierra Leone. It is a
-                    subsidiary of Salone Jamboree. At Jamboree Consult, we
-                    ensure our clients are provided with effective
-                    website design and marketing strategy.
-                  </p>
-                  <ul className="text-sm -mr-20 -ml-20">
-                    <div className="font-bold pt-4"> We also do:</div>
-                    <div className=" space-y-3">
-                      <div>
-                        <li>Domain Name Registration</li>
-                        <li>Corporate Emails </li>
-                        <li> Web Design</li>
-                        <li> Mobile App Development</li>
-                        <li>Social Media Marketing</li>
-                        <li> Facebook Advertising</li>
-                        <li> Documentary</li>
-                      </div>
-                      <div>
-                        <li> Graphic Design</li>
-                        <li> Printing</li>
-                        <li> Networking</li>
-                        <li>Online Radio streaming</li>
-                        <li> Live Events streaming</li>
-                        <li> Bulk SMS</li>
-                        <li>Events</li>
-                      </div>
-                      <div>
-                        <ul>
-                         <div className="font-bold pt-2 ">
-                         Our Clients: 
-                         </div>
-                         
-                          <li>Sierra Leone Association of Journalist</li>
-                          <li> AYV Radio St. George Foundation</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </ul>
-                </div>
-                <img src="img4.jpg " className="fixed w-full h-full   object-cover" alt="img4" />
-              </div>
-            </div>
-        </div>
+          {/* fade css */}
+          <div className="myslide fade ">
+            <div className="txt z-10 mt-1 ">
+              <h2 className="text-blue-500 px-2  -mr-20 -ml-20 text-center ">
+                Welcome to Jamboree Consulting Firm
+              </h2>
+              <p className="-mr-20 -ml-20 text-center px- pt-4">
+                Jamboree Consult is a public relations and marketing consultancy
+                operating in Sierra Leone. It is a subsidiary of Salone
+                Jamboree. At Jamboree Consult, we ensure our clients are
+                provided with effective website design and marketing strategy.
+              </p>
+              <ul className="text-sm -mr-20 -ml-20">
+                <div className="font-bold pt-4"> We also do:</div>
+                <div className=" space-y-3">
+                  <div>
+                    <li>Domain Name Registration</li>
+                    <li>Corporate Emails </li>
+                    <li> Web Design</li>
+                    <li> Mobile App Development</li>
+                    <li>Social Media Marketing</li>
+                    <li> Facebook Advertising</li>
+                    <li> Documentary</li>
+                  </div>
+                  <div>
+                    <li> Graphic Design</li>
+                    <li> Printing</li>
+                    <li> Networking</li>
+                    <li>Online Radio streaming</li>
+                    <li> Live Events streaming</li>
+                    <li> Bulk SMS</li>
+                    <li>Events</li>
+                  </div>
+                  <div>
+                    <ul>
+                      <div className="font-bold pt-2 ">Our Clients:</div>
 
-        {/*  */}
-      
+                      <li>Sierra Leone Association of Journalist</li>
+                      <li> AYV Radio St. George Foundation</li>
+                    </ul>
+                  </div>
+                </div>
+              </ul>
+            </div>
+            <img
+              src="img6.jpg "
+              className="fixed w-full h-screen object-cover "
+              alt="img4"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/*  */}
+
       <footer className="bg-gray-800 text-white p-4 z-10 fixed  w-full bottom-0 py-2  ">
         <div className="container mx-auto text-center md:text-base text-sm ">
           <p>

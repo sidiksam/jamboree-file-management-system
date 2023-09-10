@@ -52,16 +52,6 @@ export const signInUser =
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
-        // user.user.reload();
-        // // Step 4: Create user collection in Firestore
-        // fire.firestore().collection("users").doc(user.user.uid).set({
-        //   uid: user.user.uid,
-        //   name: user.user.displayName,
-        //   email: user.user.email,
-        //   role: "user",
-        //   // Other user data you want to store
-        // });
-
         fire
           .firestore()
           .collection("users")
@@ -85,104 +75,49 @@ export const signInUser =
       });
   };
 
-// Register A new user
-
-  // export const registerUser =
-  // (name, email, password, setSuccess, setLoading) => (dispatch) => {
-  //   fire
-  //     .auth()
-  //     .createUserWithEmailAndPassword(email, password)
-  //     // .then((cred) => {
-  //     //   cred.user.sendEmailVerification();
-  //     //   dispatch(
-  //     //     signupUser({
-  //     //       user: cred.user,
-  //     //     })
-  //     //   );
-
-  //     //   setSuccess(true);
-
-  //     //   fire.auth().currentUser.updateProfile({
-  //     //     displayName: name,
-  //     //   });
-  //     // })
-  //     // .catch((error) => {
-  //     //   toast.error(` ${error}`);
-  //     //   setLoading(false);
-  //     // });
-
-  //     .then((cred) => {
-  //       const currentUser = fire.auth().currentUser;
-  //       dispatch(
-  //         fire
-  //           .firestore()
-  //           .collection("users")
-  //           .doc(cred.user.uid)
-  //           .set({
-  //             uid: currentUser.uid,
-  //             name: currentUser.displayName,
-  //             email: currentUser.email,
-  //             role: "user",
-  //           })
-  //           .then(() => {
-  //             cred.user.sendEmailVerification();
-  //           })
-  //       );
-
-  //       setSuccess(true);
-  //     })
-
-  //     .catch((error) => {
-  //       toast.error(` ${error}`);
-  //       setLoading(false);
-  //     });
-  // };
-
-  
-export const registerUser = (name, email, password, setSuccess, setLoading) =>
-(dispatch) => {
-  fire
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then((cerd) => {
-      fire
-        .auth()
-        .currentUser.updateProfile({
-          displayName: name,
-        })
-        .then(() => {
-          const currentUser = fire.auth().currentUser;
-          dispatch(
-            signupUser({
-              uid: currentUser.uid,
-              name: currentUser.displayName,
-              email: currentUser.email,
-              role:currentUser.role
-            }),
-            fire
-              .firestore()
-              .collection("users")
-              .doc(cerd.user.uid)
-              .set({
+export const registerUser =
+  (name, email, password, setSuccess, setLoading) => (dispatch) => {
+    fire
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((cerd) => {
+        fire
+          .auth()
+          .currentUser.updateProfile({
+            displayName: name,
+          })
+          .then(() => {
+            const currentUser = fire.auth().currentUser;
+            dispatch(
+              signupUser({
                 uid: currentUser.uid,
                 name: currentUser.displayName,
                 email: currentUser.email,
-                role: "user"
-              })
-              .then(() => {
-                cerd.user.sendEmailVerification();
-                
-              })
-          );
-        
-          setSuccess(true);
-        });
-    })
-    .catch((error) => {
-      toast.error(` ${error}`);
-      setLoading(false);
-    });
-};
+                role: currentUser.role,
+              }),
+              fire
+                .firestore()
+                .collection("users")
+                .doc(cerd.user.uid)
+                .set({
+                  uid: currentUser.uid,
+                  name: currentUser.displayName,
+                  email: currentUser.email,
+                  role: "user",
+                })
+                .then(() => {
+                  cerd.user.sendEmailVerification();
+                })
+            );
+
+            setSuccess(true);
+          });
+      })
+      .catch((error) => {
+        toast.error(` ${error}`);
+        setLoading(false);
+      });
+  };
 
 // User Sign out function
 export const signOutUser = () => (dispatch) => {
@@ -250,7 +185,6 @@ export const getUser = () => (dispatch) => {
 // DELETE USER
 export const deleteUserFunc = (userId) => (dispatch) => {
   dispatch(setloading(true));
-  dispatch(setloading(true));
 
   fire
     .firestore()
@@ -262,6 +196,7 @@ export const deleteUserFunc = (userId) => (dispatch) => {
       dispatch(setDeleteUser(userId));
       dispatch(setloading(false));
       toast.success("User deleted successfully");
+      window.location.reload();
     })
     .catch(() => {
       toast.error("Somthing went wrong");

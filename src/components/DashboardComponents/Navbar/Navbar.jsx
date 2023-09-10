@@ -23,10 +23,16 @@ const Navbar = () => {
     <>
       <nav className="bg-white py-3 shadow-sm  hidden md:block ">
         <div className="container lg:px-24  items-center">
-          <div className="flex justify-between text-black">
+          <div className="flex justify-between items-center text-black">
             <div className="">
               {" "}
-              <img src="logo copy.jpg" alt="" className="object-cover cursor-pointer h-14" />
+              <Link to={"/"}>
+                <img
+                  src="logo copy.jpg"
+                  alt=""
+                  className="object-cover cursor-pointer h-14"
+                />
+              </Link>
             </div>
             <div>
               <ul className="flex space-x-3 items-center">
@@ -68,10 +74,10 @@ const Navbar = () => {
                   </>
                 ) : (
                   <>
-                    <li className="bg-black py-2 px-5 rounded text-sm ">
+                    <li className="font-bold py-2 px-5 rounded text-sm ">
                       <Link to={"/signin"}>SIGN IN</Link>
                     </li>
-                    <li className="bg-white py-2 px-5 rounded text-sm text-black ">
+                    <li className=" py-2 px-5 rounded text-sm font-bold">
                       <Link to={"/signup"}>SIGN UP</Link>
                     </li>{" "}
                   </>
@@ -90,8 +96,6 @@ const Navbar = () => {
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
               <div className="relative flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-               
-
                   <div className="space-x-32 flex">
                     <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2  text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                       <span className="absolute -inset-0.5" />

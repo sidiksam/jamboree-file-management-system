@@ -3,6 +3,7 @@
 export const CREATE_FOLDER = "CREATE_FOLDER";
 export const ADD_FOLDERS = "ADD_FOLDERS";
 export const GET_ALL_FOLDERS = "GET_ALL_FOLDERS";
+export const RENAME_FOLDER = "RENAME_FOLDER"
 
 export const SET_LOADING = "SET_LOADING";
 export const CHANGE_FOLDER = "CHANGE_FOLDER";
@@ -18,6 +19,8 @@ export const GET_ALL_FILES = "GET_ALL_FILES";
 export const SET_FILE_DATA = "SET_FILE_DATA";
 export const DELETE_FILE = "DELETE_FILE";
 export const SEARCH_FILE = "SEARCH_FILE";
+export const RENAME_FILE = "RENAME_FILE"
+
 
 
 // Users

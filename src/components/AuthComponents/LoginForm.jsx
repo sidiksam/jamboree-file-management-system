@@ -93,8 +93,9 @@ const LoginForm = () => {
               <Form.Item>
                 {verifyEmail == false ? (
                   <>
+                  
                     <Button
-                      disabled
+                      
                       loading={loading}
                       className="w-full bg-blue-700"
                       size="large"

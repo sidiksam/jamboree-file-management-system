@@ -14,11 +14,15 @@ const addFolders = (payload) => ({
   payload,
 });
 
+const setFolderData = (payload) => ({
+  type: types.RENAME_FOLDER,
+  payload,
+});
+
 const addAllFolders = (payload) => ({
   type: types.GET_ALL_FOLDERS,
   payload,
 });
-
 
 const setloading = (payload) => ({
   type: types.SET_LOADING,
@@ -43,6 +47,10 @@ const addFiles = (payload) => ({
   payload,
 });
 
+const setUpdateData = (payload) => ({
+  type: types.RENAME_FILE,
+  payload,
+});
 
 const addAllFiles = (payload) => ({
   type: types.GET_ALL_FILES,
@@ -69,7 +77,6 @@ const setDeleteFile = (payload) => ({
   payload,
 });
 
-
 // Users
 const setUsers = (payload) => ({
   type: types.SET_USERS,
@@ -80,8 +87,6 @@ const setUsers = (payload) => ({
 //   type: types.SET_USER,
 //   payload,
 // });
-
-
 
 // actionCreators
 
@@ -95,8 +100,8 @@ export const createFolder = (data, setSuccess, setLoading) => (dispatch) => {
       const folderId = folder.id;
       toast.success("Folder Created Successfully");
       dispatch(addFolder({ data: folderData, docId: folderId }));
+      window.location.reload(); // Reload the page
       setSuccess(true);
-      
     })
     .catch((error) => {
       toast.error(`${error}`);
@@ -195,30 +200,6 @@ export const getUsers = () => (dispatch) => {
     });
 };
 
-// // get a single user 
-// export const getUser = (userId) => (dispatch) => {
-//   dispatch(setloading(true));
-  
-//   fire
-//     .firestore()
-//     .collection("users").where("uid", "==", userId)
-//     .get()
-//     .then(async (users) => {
-//       const userData = await users.docs.map((user) => ({
-//         data: user.data(),
-//       }));
-
-//       dispatch(setloading(false));
-//       dispatch(setUser(userData));
-//     })
-//     .catch((error) => {
-//       toast.error(error);
-//     })
-//     .catch((error) => {
-//       toast.error(`${error}`);
-//     });
-// };
-
 // update user role
 export const updateUser =
   (roleId, role, setSuccess, setLoading) => (dispatch) => {
@@ -230,7 +211,7 @@ export const updateUser =
       .then(() => {
         dispatch(setRoleData({ roleId, role }));
         toast.success(`${role} added successfully!`);
-
+        window.location.reload(); // Reload the page
         setSuccess(true);
       })
       .catch((error) => {
@@ -243,6 +224,25 @@ export const changeFolder = (folderId) => (dispatch) => {
   dispatch(setChangeFolder(folderId));
 };
 
+// Rename folder
+export const updateFolder =
+  (folderId, name, setSuccess, setLoading) => (dispatch) => {
+    fire
+      .firestore()
+      .collection("folders")
+      .doc(folderId)
+      .update({ name })
+      .then(() => {
+        dispatch(setFolderData({ folderId, name }));
+        toast.success(`Folder rename successfully!`);
+        window.location.reload(); // Reload the page
+        setSuccess(true);
+      })
+      .catch((error) => {
+        toast.error(error);
+        setLoading(false);
+      });
+  };
 // All files to a particular user
 export const getFiles = (userId) => (dispatch) => {
   fire
@@ -283,6 +283,26 @@ export const getAllFiles = () => (dispatch) => {
     });
 };
 
+// Rename folder
+export const updateFile =
+  (fileId, name, extention, setSuccess, setLoading) => (dispatch) => {
+    fire
+      .firestore()
+      .collection("files")
+      .doc(fileId)
+      .update({ name, extention })
+      .then(() => {
+        dispatch(setUpdateData({ fileId, name }));
+        toast.success(`File rename successfully!`);
+        window.location.reload(); // Reload the page
+
+        setSuccess(true);
+      })
+      .catch((error) => {
+        toast.error(error);
+        setLoading(false);
+      });
+  };
 
 // Create and fetch file
 export const createFile = (data, setSuccess, setLoading) => (dispatch) => {
@@ -295,6 +315,7 @@ export const createFile = (data, setSuccess, setLoading) => (dispatch) => {
       const fileId = file.id;
       toast.success("File created Successfully!");
       dispatch(addFile({ data: fileData, docId: fileId }));
+      window.location.reload(); // Reload the page
       setSuccess(true);
       setLoading(true);
     })
@@ -332,7 +353,7 @@ export const uploadFile =
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-       console.log(`upload is ${progress}% done`);
+        console.log(`upload is ${progress}% done`);
       },
       (error) => {
         toast.error(`${error}`);
@@ -350,6 +371,7 @@ export const uploadFile =
             const fileId = file.id;
             toast.success("File uploaded successfully!");
             dispatch(addFile({ data: fileData, docId: fileId }));
+            window.location.reload(); // Reload the page
             setSuccess(true);
           })
           .catch((error) => {
@@ -378,4 +400,3 @@ export const deleteFile = (userId) => (dispatch) => {
       toast.error("Somthing went wrong");
     });
 };
-
