@@ -50,14 +50,14 @@ const AboutUs = () => {
                     </div>
                     <li className=" md:py-1 md:px-5 rounded ">
                       <Button className="border-none text-white font-bold md:text-sm text-xs ">
-                        <Link to={"/dashboard"}>Dashboard</Link>
+                        <Link to={"/dashboard"}>DASHBOARD</Link>
                       </Button>
                     </li>
                     {adminUser.adminUser.map((user) => user.data.role) ==
                     "super admin" ? (
                       <li className=" md:py-1 md:px-5 rounded shadow-md ">
                         <Button className="border-none text-white font-bold text-sm ">
-                          <Link to={"/admin"}>Admin</Link>
+                          <Link to={"/superadmin"}>ADMIN</Link>
                         </Button>
                       </li>
                     ) : null}
@@ -196,7 +196,7 @@ const AboutUs = () => {
                       "super admin" ? (
                         <li className="border-b-2">
                           <Button className="border-none text-black text-sm -ml-4 ">
-                            <Link to={"/admin"}>ADMIN</Link>
+                            <Link to={"/superadmin"}>ADMIN</Link>
                           </Button>
                         </li>
                       ) : null}

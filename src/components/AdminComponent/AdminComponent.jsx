@@ -21,7 +21,9 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ThreeCircles } from "react-loader-spinner";
 
 const AdminComponent = () => {
-  const adminUser = useSelector((state) => state.auth);
+  const adminUser = useSelector(
+    (state) => state.auth?.adminUser[0]?.data?.role
+  );
 
   const dispatch = useDispatch();
   const adminUsers = useSelector((state) => state.fileFolders.adminUsers);
@@ -50,16 +52,23 @@ const AdminComponent = () => {
 
   const [selectRole, setSelectRole] = useState("");
   const [roleName, setRoleName] = useState("");
-  const [deleteUser, setDeleteUser] = useState("");
 
   useEffect(() => {
-    if (
-      adminUser.adminUser.map((user) => user.data.role) == "super admin" &&
-      isAuthenticated == true
-    ) {
-      navigate("/admin");
+    if (isLoading) {
+      <>
+        <p>Loading.....</p>
+      </>;
+    } else {
+      if (!isAuthenticated) {
+        navigate("/signin");
+      }
+      if (adminUser == "super admin") {
+        navigate("/superadmin");
+      } else {
+        navigate("/dashboard");
+      }
     }
-  }, [isAuthenticated, navigate]);
+  }, [adminUser]);
 
   useEffect(() => {
     dispatch(getUsers());

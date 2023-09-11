@@ -58,7 +58,7 @@ const Navbar = () => {
                     "super admin" ? (
                       <li className="bg-black py-1 px-5 rounded shadow-md ">
                         <Button className="border-none text-white text-sm ">
-                          <Link to={"/admin"}>ADMIN</Link>
+                          <Link to={"/superadmin"}>ADMIN</Link>
                         </Button>
                       </li>
                     ) : null}
@@ -137,7 +137,7 @@ const Navbar = () => {
                     "super admin" ? (
                       <li className="border-b-2">
                         <Button className="border-none text-black text-sm -ml-4 ">
-                          <Link to={"/admin"}>ADMIN</Link>
+                          <Link to={"/superadmin"}>ADMIN</Link>
                         </Button>
                       </li>
                     ) : null}

@@ -59,7 +59,7 @@ const HomePage = () => {
                     "super admin" ? (
                       <li className=" md:py-1 md:px-5 rounded shadow-md ">
                         <Button className="border-none text-white font-bold text-sm ">
-                          <Link to={"/admin"}>ADMIN</Link>
+                          <Link to={"/superadmin"}>ADMIN</Link>
                         </Button>
                       </li>
                     ) : null}
@@ -166,7 +166,7 @@ const HomePage = () => {
                       "super admin" ? (
                         <li className="border-b-2">
                           <Button className="border-none text-black text-sm -ml-4 ">
-                            <Link to={"/admin"}>ADMIN</Link>
+                            <Link to={"/superadmin"}>ADMIN</Link>
                           </Button>
                         </li>
                       ) : null}

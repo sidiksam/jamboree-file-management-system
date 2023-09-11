@@ -62,7 +62,7 @@ const ContactUs = () => {
                     "super admin" ? (
                       <li className=" md:py-1 md:px-5 rounded shadow-md ">
                         <Button className="border-none text-white font-bold text-sm ">
-                          <Link to={"/admin"}>Admin</Link>
+                          <Link to={"/superadmin"}>Admin</Link>
                         </Button>
                       </li>
                     ) : null}
@@ -102,17 +102,18 @@ const ContactUs = () => {
             </header>
             <div className="slider">
               {/* fade css */}
-              <div className="myslide fade">
+              <div className="myslide fade ">
                 <div className="txtContact z-10   ">
                   <div className="-mt-44 pb-2">
                     <h1>Welcome to Jamboree Consulting Firm</h1>
                   </div>
                   <div>
-                    <div className="pb-1">
+                    <div className="pb-2">
                       {" "}
                       <Map center={mapCenter} zoom={mapZoom} />
                     </div>
-                    <div className="flex space-x-3  items-center pb-1">
+                  <div className="mb-24">
+                  <div className="flex space-x-3  items-center pb-1">
                       <p>
                         <FiHome />
                       </p>
@@ -130,6 +131,7 @@ const ContactUs = () => {
                       </p>
                       <p>enquiries@jamboreeconsult.com</p>
                     </div>
+                  </div>
                   </div>
                 </div>
                 <img
@@ -191,7 +193,7 @@ const ContactUs = () => {
                       "super admin" ? (
                         <li className="border-b-2">
                           <Button className="border-none text-black text-sm -ml-4 ">
-                            <Link to={"/admin"}>ADMIN</Link>
+                            <Link to={"/superadmin"}>ADMIN</Link>
                           </Button>
                         </li>
                       ) : null}

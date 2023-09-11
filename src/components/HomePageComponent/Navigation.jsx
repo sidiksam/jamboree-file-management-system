@@ -51,7 +51,7 @@ const NavigationComponent = () => {
                     "super admin" ? (
                       <li className="bg-black md:py-1 md:px-5 rounded shadow-md ">
                         <Button className="border-none text-white text-sm ">
-                          <Link to={"/admin"}>Admin</Link>
+                          <Link to={"/superadmin"}>Admin</Link>
                         </Button>
                       </li>
                     ) : null}
@@ -113,7 +113,7 @@ const NavigationComponent = () => {
                     "super admin" ? (
                       <li className="border-b-2">
                         <Button className="border-none text-white text-sm -ml-4 ">
-                          <Link to={"/admin"}>Admin</Link>
+                          <Link to={"/superadmin"}>Admin</Link>
                         </Button>
                       </li>
                     ) : null}
