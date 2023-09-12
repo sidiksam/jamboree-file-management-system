@@ -13,6 +13,8 @@ import PendingPage from "./pages/DashboardPage/PendingPage";
 import AdminPage from "./pages/DashboardPage/AdminPage";
 import AboutUs from "./pages/AuthPages/AvoutUs/AboutUs";
 import Contact from "./pages/AuthPages/ContactUs/Contact";
+import ResetPassword from "./pages/AuthPages/ResetPassword/ResetPassword";
+import ResetPending from "./pages/AuthPages/ResetPassword/ResetPending";
 
 
 const App = () => {
@@ -30,6 +32,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/signin" element={<Login />}></Route>
+        <Route path="/resetpassword" element={<ResetPassword />}></Route>
+        <Route path="/resetpending" element={<ResetPending />}></Route>
         <Route path="/signup" element={<Register />}></Route>
         <Route path="/dashboard/*" element={<DashboardPage />}></Route>
         <Route path="/pending/*" element={<PendingPage />}></Route>

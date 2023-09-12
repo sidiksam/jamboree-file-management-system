@@ -1,12 +1,24 @@
 import * as types from "../actionsTypes/authActionTypes";
 import fire from "../../config/firebase";
 import { toast } from "react-toastify";
+
+// action types
 const loginUser = (payload) => {
   return {
     type: types.SIGN_IN,
     payload,
   };
 };
+
+// reset password
+const resetPasswordUser = (payload) => {
+  return {
+    type: types.RESET_PASSWORD,
+    payload,
+  };
+}
+
+// Check if the user has logged in
 
 const checkloginUser = (payload) => {
   return {
@@ -42,6 +54,8 @@ const setloading = (payload) => ({
   type: types.SET_LOADING,
   payload,
 });
+
+
 
 // action creators
 
@@ -128,6 +142,23 @@ export const signOutUser = () => (dispatch) => {
       dispatch(logoutOutUser());
     });
 };
+
+// Reset password
+export const resetPassword = (email, setSuccess, setLoading) => (dispatch) => {
+  fire
+    .auth()
+    .sendPasswordResetEmail(email)
+    .then(() => {
+      dispatch(resetPasswordUser());
+      setSuccess(true);
+      setLoading(false);
+    })
+    .catch((error) => {
+      toast.error(`${error}`);
+      setLoading(false);
+    });
+};
+
 
 // Check if the user has logged in function
 

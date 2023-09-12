@@ -187,7 +187,7 @@ const AdminComponent = () => {
   return (
     <>
       <nav className="bg-white py-3 shadow-sm hidden md:block">
-        <div className="container px-24 items-center">
+        <div className=" px-8 items-center">
           <div className="flex justify-between items-center text-black">
             <div>
               {" "}
@@ -243,7 +243,7 @@ const AdminComponent = () => {
               <div className="relative flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   {/* Mobile menu button*/}
-                  <div className="space-x-32 flex">
+                  <div className="space-x-56 flex">
                     <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2  text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                       <span className="absolute -inset-0.5" />
                       <span className="sr-only">Open main menu</span>
@@ -347,12 +347,12 @@ const AdminComponent = () => {
         </Form>
       </Modal>
       {/*  */}
-      <div className="container md:px-24 px-4 py-10 rounded ">
+      <div className=" md:px-8 px-4 py-10 rounded ">
         <div className=" flex justify-end  pb-2 items-center">
           <FiSearch className="-mr-6 z-10 text-sm text-gray-500" />
           <Input
             size="large"
-            className="md:w-60 pl-8 flex items-center "
+            className="md:w-80 pl-8 flex items-center "
             placeholder="search here"
             onChange={handleFilter}
           />

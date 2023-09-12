@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-white py-3 shadow-sm  hidden md:block ">
-        <div className="container lg:px-24  items-center">
+        <div className="md:px-8 items-center">
           <div className="flex justify-between items-center text-black">
             <div className="">
               {" "}

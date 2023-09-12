@@ -48,7 +48,7 @@ const RegisterForm = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   return (
-    <div className="flex h-screen login-bg justify-center items-center">
+    <div className="flex h-screen md:login-bg justify-center items-center">
       <div className="md:w-3/12">
         <div className="bg-white p-10 rounded-md border">
           <div className="flex items-center flex-col">
@@ -67,7 +67,7 @@ const RegisterForm = () => {
               name="name"
               label="Name"
               rules={[{ required: true, message: "Please input your name!" },{
-                pattern: /^[A-Za-z]+$/i,
+                pattern: /^[A-Z a-z]+$/i,
                 message: "Name should be in alphabets only",
               }]}
             >

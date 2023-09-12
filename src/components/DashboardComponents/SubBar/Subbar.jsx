@@ -40,8 +40,8 @@ const Subbar = () => {
       <nav>
         {adminUsers.adminUser.map((user) => user.data.role) == "super admin" ||
         adminUsers.adminUser.map((user) => user.data.role) == "admin" ? (
-          <div>
-            <div className="container md:px-24 px-4 pt-8  lg:flex md:justify-between">
+          <div className="md:px-8">
+            <div className="  px-4 pt-8  lg:flex md:justify-between">
               <ol className="list-reset flex text-xs text-gray-400">
                 {currentFolder !== "root" ? (
                   <>

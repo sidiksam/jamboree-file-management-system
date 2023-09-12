@@ -56,7 +56,7 @@ const HomeComponent = () => {
           onChangeCapture={(e) => setFilter(e.target.value)}
         />
       </div>
-      <div className="md:px-20  ">
+      <div className="md:px-20 ">
         {isLoading ? (
         <div className="flex items-center justify-center text-center mt-28 ">
             <div className="text-center lg:text-5xl hidden md:block">

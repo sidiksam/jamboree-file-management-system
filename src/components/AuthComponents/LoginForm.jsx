@@ -11,7 +11,7 @@ const LoginForm = () => {
 
   const [success, setSuccess] = useState(false);
 
-  const verifyEmail = useSelector((state) => state.auth.user.emailVerified);
+  const verifyEmail = useSelector((state) => state?.auth?.user?.emailVerified);
 
 
   const [email, setEmail] = useState("");
@@ -89,6 +89,12 @@ const LoginForm = () => {
             >
               <Input.Password size="large" placeholder="Password" />
             </Form.Item>
+            <div className="text-center text-sm">
+            Forget your password?{"  "}
+            <Link to="/resetpassword" className="text-blue-600 font-bold text-sm">
+              Reset password
+            </Link>
+          </div>
             <div className="mt-8">
               <Form.Item>
                 {verifyEmail == false ? (
