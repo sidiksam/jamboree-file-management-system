@@ -69,8 +69,8 @@ const FileComponent = () => {
         <>
           <div className=" absolute w-full h-full bg-black left-0 top-0 text-white">
             {/* sub menu bah */}
-            <div className="relative">
-              <div className=" justify-between items-center h-auto p-8 mt-5 my-0 flex  ">
+            <div className="md:relative">
+              <div className=" md:justify-between items-center h-auto md:p-8 mt-5 my-0 flex  ">
                 <div title={currentFile?.data?.name}>
                   {currentFile?.data?.name.length > 40
                     ? currentFile?.data?.name.slice(0, 40) +

@@ -1,31 +1,19 @@
-// import { useState } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { duotoneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+
 import "./CodeEditor.css";
-import TextArea from "antd/es/input/TextArea";
 import { Content } from "antd/es/layout/layout";
+
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 const CodeEditor = ({ fileName, data, setData }) => {
   // const [data, setData] = useState("\n");
-  const codes = {
-    html: "xml",
-    php: "php",
-    js: "javascript",
-    jsx: "jsx",
-    text: "textile",
-    xml: "xml",
-    css: "css",
-    c: "clike",
-    cpp: "clike",
-    cs: "clike",
-    py: "java",
-    json: "javascript",
-  };
+
   const handleKeyDown = (evt) => {
     let value = Content,
-    selStartPos = evt.currentTarget.selectionStart;
+      selStartPos = evt.currentTarget.selectionStart;
     console.log(evt.currentTarget);
 
-    if (evt.key == "Tab") {
+    if (evt.key === "Tab") {
       value =
         value.substring(0, selStartPos) +
         "  " +
@@ -36,26 +24,69 @@ const CodeEditor = ({ fileName, data, setData }) => {
       setData(value);
     }
   };
+
+  const modules = {
+    toolbar: [
+      "bold",
+      "italic",
+      "underline",
+      "strike",
+      "code-block",
+      "image",
+      "link",
+      "video",
+      "formula",
+      "clean",
+      "blockquote",
+      "header",
+      "list",
+      "indent",
+      "align",
+      "color",
+      "background",
+      "font",
+      "size",
+      "direction",
+      "code",
+      "script",
+      { header: [1, 2, 3, 4, 5, 6, false] },
+      { font: [] },
+      { size: ["small", false, "large", "huge"] },
+      { align: [] },
+      { color: [] },
+      { background: [] },
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+      { direction: "rtl" },
+      { script: "sub" },
+      { script: "super" },
+      { code: "code" },
+      { formula: [] },
+      { image: [] },
+      { video: [] },
+      { blockquote: [] },
+    ],
+  };
   return (
-    <div className=" mt-3 px-5">
-      <div className="mx-auto code-edit-container p-3">
-        <TextArea
-          className="code-input w-100"
+    <div className=" mt-3 md:px-5">
+      <div className="md:mx-auto  p-3">
+  
+        <ReactQuill
+          theme="snow"
           value={data}
+          onChange={setData}
           onKeyDown={handleKeyDown}
-          onChange={(e) => setData(e.target.value)}
+          className=" h-auto md:w-100"
+          modules={modules}
         />
-        <pre className="code-output">
-          <SyntaxHighlighter
-            language={codes[fileName.split(".")[1]]}
-            showLineNumbers
-            style={duotoneLight}
-            wrapLines
-            startingLineNumber={1}
-          >
-            {data}
-          </SyntaxHighlighter>
-        </pre>
+        
+        < div className="pt-8 mt-4 bg-gray-50  md:w-100 md:px-5 py-2 " 
+        dangerouslySetInnerHTML={{ __html: data }}
+        />
+          
+        
       </div>
     </div>
   );
