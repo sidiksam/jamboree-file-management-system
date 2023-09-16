@@ -34,15 +34,16 @@ const HomeComponent = () => {
   let folderSearch = userFolders.filter((folder) =>
     folder.data.name.toLowerCase().includes(filter)
   );
+  
   let fileSearch = userFiles.filter((folder) =>
-    folder.data.name.toLowerCase().includes(filter)
+    folder.data.name.includes(filter)
   );
 
   let getFolderSearch = getAllFolders.filter((folder) =>
-    folder.data.name.toLowerCase().includes(filter)
+    folder.data.name.includes(filter)
   );
   let getFileSearch = getAllFiles.filter((folder) =>
-    folder.data.name.toLowerCase().includes(filter)
+    folder.data.name.includes(filter)
   );
 
   return (

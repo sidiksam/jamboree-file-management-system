@@ -15,8 +15,8 @@ const FileComponent = () => {
 
   const { currentFile, isAuthenticated } = useSelector(
     (state) => ({
-      currentFile: state.fileFolders?.getAllFiles.find(
-        (file) => file.docId == fileId
+      currentFile: state.fileFolders.userFiles.find(
+        (file) => file.docId === fileId
       ),
       isAuthenticated: state.auth.isAuthenticated
     }),
@@ -69,8 +69,8 @@ const FileComponent = () => {
         <>
           <div className=" absolute w-full h-full bg-black left-0 top-0 text-white">
             {/* sub menu bah */}
-            <div className="md:relative">
-              <div className=" md:justify-between items-center h-auto md:p-8 mt-5 my-0 flex  ">
+            <div className="relative">
+              <div className=" justify-between items-center h-auto p-8 mt-5 my-0 flex  ">
                 <div title={currentFile?.data?.name}>
                   {currentFile?.data?.name.length > 40
                     ? currentFile?.data?.name.slice(0, 40) +
@@ -85,7 +85,7 @@ const FileComponent = () => {
                     className="flex items-center space-x-2 font-medium bg-black p-5 text-white  "
                   >
                   
-                    <FaArrowLeft className="" /> GO BACK
+                    <FaArrowLeft className="" /> Go Back
                   </Button>
                   <Button
                     onClick={() => downloadFile()}
