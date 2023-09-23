@@ -8,7 +8,7 @@ import { ThreeCircles } from "react-loader-spinner";
 
 const HomeComponent = () => {
   const [filter, setFilter] = useState("");
-
+ 
   const { isLoading, userFolders, userFiles, getAllFiles, getAllFolders } =
     useSelector(
       (state) => ({
@@ -32,19 +32,27 @@ const HomeComponent = () => {
   const adminUser = useSelector((state) => state.auth);
 
   let folderSearch = userFolders.filter((folder) =>
-    folder.data.name.toLowerCase().includes(filter)
-  );
-  
-  let fileSearch = userFiles.filter((folder) =>
     folder.data.name.includes(filter)
   );
 
+  let fileSearch = userFiles.filter((file) =>
+    file.data.name.includes(filter)
+  );
+
   let getFolderSearch = getAllFolders.filter((folder) =>
-    folder.data.name.includes(filter)
+    folder.data.name.toLowerCase().includes(filter)
   );
   let getFileSearch = getAllFiles.filter((folder) =>
     folder.data.name.includes(filter)
   );
+
+  function handleFilter(event) {
+    event.preventDefault();
+    const lowercaseValue = event.target.value.toLowerCase();
+    setFilter(lowercaseValue);
+  
+    
+  }
 
   return (
     <>
@@ -54,41 +62,41 @@ const HomeComponent = () => {
           size="large"
           className="md:w-96   pl-8 flex items-center "
           placeholder="search here"
-          onChangeCapture={(e) => setFilter(e.target.value)}
+          onChangeCapture={handleFilter}
         />
       </div>
       <div className="md:px-20 ">
         {isLoading ? (
-        <div className="flex items-center justify-center text-center mt-28 ">
+          <div className="flex items-center justify-center text-center mt-28 ">
             <div className="text-center lg:text-5xl hidden md:block">
-            <ThreeCircles
-              height="100"
-              width="100"
-              color="#041b9e"
-              wrapperStyle={{ width: "100%", height: "100%", margin: "auto"}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel="three-circles-rotating"
-              outerCircleColor=""
-              innerCircleColor="#32f022"
-              middleCircleColor=""
-            />
+              <ThreeCircles
+                height="100"
+                width="100"
+                color="#041b9e"
+                wrapperStyle={{ width: "100%", height: "100%", margin: "auto" }}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="three-circles-rotating"
+                outerCircleColor=""
+                innerCircleColor="#32f022"
+                middleCircleColor=""
+              />
+            </div>
+            <div className="text-center lg:text-5xl block md:hidden">
+              <ThreeCircles
+                height="50"
+                width="50"
+                color="#041b9e"
+                wrapperStyle={{ width: "100%", height: "100%", margin: "auto" }}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="three-circles-rotating"
+                outerCircleColor=""
+                innerCircleColor="#32f022"
+                middleCircleColor=""
+              />
+            </div>
           </div>
-          <div className="text-center lg:text-5xl block md:hidden">
-            <ThreeCircles
-              height="50"
-              width="50"
-              color="#041b9e"
-              wrapperStyle={{ width: "100%", height: "100%", margin: "auto"}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel="three-circles-rotating"
-              outerCircleColor=""
-              innerCircleColor="#32f022"
-              middleCircleColor=""
-            />
-          </div>
-        </div>
         ) : (
           <>
             {adminUser.adminUser.map((user) => user.data.role) == "admin" ? (

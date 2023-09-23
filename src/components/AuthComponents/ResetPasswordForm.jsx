@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Form, Input } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 import { resetPassword } from "../../redux/actionCreators/authActionCreator";
 
 const ResetPasswordForm = () => {
@@ -51,7 +50,7 @@ const ResetPasswordForm = () => {
           >
             <Form.Item
               name="email"
-              label="ResetEmail"
+              label="Email"
               value={resetEmail}
               onChange={(e) => setResetEmail(e.target.value)}
               rules={[
